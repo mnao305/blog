@@ -23,9 +23,10 @@
     }
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
     "@nuxt/typescript-runtime": "^0.4.0",
-    "@nuxtjs/pwa": "^3.0.0-0"
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "nuxt": "^2.0.0",
+    "nuxt-composition-api": "^0.8.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

@@ -38,7 +38,8 @@ const config: Configuration = {
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    'nuxt-composition-api'
   ],
   /*
   ** Nuxt.js modules
@@ -62,6 +63,13 @@ const config: Configuration = {
     */
     extend () {
     }
+  },
+
+  generate: {
+    // ! 非同期関数がgenerateだと動かないらしい。
+    // ! https://github.com/nuxt-community/composition-api/issues/44
+    // ! そのための措置
+    interval: 2000
   }
 }
 
