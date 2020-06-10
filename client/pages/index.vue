@@ -1,6 +1,8 @@
 <template>
   <div>
-    hogefuga
+    <nuxt-link to="/article/hoge">
+      articles ->
+    </nuxt-link>
   </div>
 </template>
 
