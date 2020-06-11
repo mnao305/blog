@@ -1,6 +1,7 @@
 ---
 title: Hello nuxt/content!
 tags: [文学 JavaScript]
+description: なんかの文学を置いてあります
 ---
 ## Hello nuxt/content
 

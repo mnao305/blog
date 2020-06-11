@@ -1,6 +1,7 @@
 ---
 title: piyopiyo記事
 tags: [日本国憲法 JavaScript]
+description: 日本国憲法を置いてあります
 ---
 ## ぴよぴよ記事
 

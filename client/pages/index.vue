@@ -1,22 +1,28 @@
 <template>
   <div>
-    <div v-for="article in articles" :key="article.path">
-      <nuxt-link :to="'article/'+article.slug">
-        {{ article.title }}
-      </nuxt-link>
-    </div>
+    <ArticleList :page="state.page" />
+    <!-- TODO 前後ボタン -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, useAsync, useContext } from 'nuxt-composition-api'
+import { defineComponent, reactive } from 'nuxt-composition-api'
+import ArticleList from '@/components/organisms/ArticleList/index.vue'
 
 export default defineComponent({
+  components: {
+    ArticleList
+  },
   setup () {
-    const { $content } = useContext()
-    const articles = useAsync(async () => await $content('articles').limit(10).fetch())
+    const state = reactive({ page: 0 })
+    const pageNext = () => {
+      state.page++
+    }
+    const pageBack = () => {
+      state.page--
+    }
 
-    return { articles }
+    return { state, pageNext, pageBack }
   }
 })
 </script>
