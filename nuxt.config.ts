@@ -4,75 +4,71 @@ const config: Configuration = {
   mode: 'universal',
   srcDir: 'client',
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
-  css: [
-  ],
+   ** Global CSS
+   */
+  css: [],
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-  ],
+   ** Plugins to load before mounting the App
+   */
+  plugins: [],
   /*
-  ** Nuxt.js dev-modules
-  */
+   ** Nuxt.js dev-modules
+   */
   buildModules: [
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
-    'nuxt-composition-api'
+    'nuxt-composition-api',
   ],
   /*
-  ** Nuxt.js modules
-  */
-  modules: [
-    '@nuxtjs/pwa',
-    '@nuxt/content'
-  ],
+   ** Nuxt.js modules
+   */
+  modules: ['@nuxtjs/pwa', '@nuxt/content'],
   /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
+   ** vuetify module configuration
+   ** https://github.com/nuxt-community/vuetify-module
+   */
   vuetify: {
-    customVariables: ['~/assets/variables.scss']
+    customVariables: ['~/assets/variables.scss'],
   },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** You can extend webpack config here
-    */
-    extend () {
-    }
+     ** You can extend webpack config here
+     */
+    extend() {},
   },
 
   generate: {
     // ! 非同期関数がgenerateだと動かないらしい。
     // ! https://github.com/nuxt-community/composition-api/issues/44
     // ! そのための措置
-    interval: 2000
-  }
+    interval: 2000,
+  },
 }
 
 export default config

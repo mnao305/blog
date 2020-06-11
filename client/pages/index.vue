@@ -11,9 +11,9 @@ import ArticleList from '@/components/organisms/ArticleList/index.vue'
 
 export default defineComponent({
   components: {
-    ArticleList
+    ArticleList,
   },
-  setup () {
+  setup() {
     const state = reactive({ page: 0 })
     const pageNext = () => {
       state.page++
@@ -23,6 +23,6 @@ export default defineComponent({
     }
 
     return { state, pageNext, pageBack }
-  }
+  },
 })
 </script>

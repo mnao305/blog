@@ -8,11 +8,11 @@
 import { defineComponent, useAsync, useContext } from 'nuxt-composition-api'
 
 export default defineComponent({
-  setup () {
+  setup() {
     const { $content } = useContext()
     const post = useAsync(async () => await $content('articles/test').fetch())
 
     return { post }
-  }
+  },
 })
 </script>

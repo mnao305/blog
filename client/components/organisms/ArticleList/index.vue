@@ -1,6 +1,10 @@
 <template>
   <div v-if="articles">
-    <ArticleCard v-for="article in articles" :key="article.path" :article="article" />
+    <ArticleCard
+      v-for="article in articles"
+      :key="article.path"
+      :article="article"
+    />
   </div>
 </template>
 
@@ -10,16 +14,18 @@ import ArticleCard from '@/components/molecules/ArticleCard/index.vue'
 
 export default defineComponent({
   props: {
-    page: Number
+    page: Number,
   },
   components: {
-    ArticleCard
+    ArticleCard,
   },
-  setup () {
+  setup() {
     const { $content } = useContext()
-    const articles = useAsync(async () => await $content('articles').limit(10).fetch())
+    const articles = useAsync(
+      async () => await $content('articles').limit(10).fetch()
+    )
 
     return { articles }
-  }
+  },
 })
 </script>

@@ -7,7 +7,7 @@ import { defineComponent } from 'nuxt-composition-api'
 
 export default defineComponent({
   props: {
-    text: String
-  }
+    text: String,
+  },
 })
 </script>
