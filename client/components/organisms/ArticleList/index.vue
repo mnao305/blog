@@ -22,8 +22,21 @@ export default defineComponent({
   setup() {
     const { $content } = useContext()
     const articles = useAsync(
-      async () => await $content('articles').limit(10).fetch()
+      async () =>
+        await $content('articles', { deep: true })
+          .limit(10)
+          .only([
+            'title',
+            'tags',
+            'description',
+            'path',
+            'createdAt',
+            'updatedAt',
+            'createdDate',
+          ])
+          .fetch()
     )
+    console.log(articles)
 
     return { articles }
   },

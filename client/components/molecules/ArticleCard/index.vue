@@ -1,5 +1,5 @@
 <template>
-  <v-card nuxt :to="'article/' + article.slug">
+  <v-card nuxt :to="article.path">
     <CardTitle :text="article.title" />
     <CardText :text="article.description" />
   </v-card>
@@ -12,8 +12,12 @@ import CardText from '@/components/atoms/CardText/index.vue'
 
 type ArticleT = {
   title: string
-  slug: string
   description: string
+  path: string
+  tags: string[]
+  createdAt: Date
+  updatedAt: Date
+  createdDate?: Date
 }
 
 export default defineComponent({
