@@ -52,6 +52,7 @@ const config: Configuration = {
    */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
   },
   /*
    ** Build configuration
