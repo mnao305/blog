@@ -1,5 +1,5 @@
 <template>
-  <v-card nuxt :to="article.path" class="ma-4">
+  <v-card nuxt :to="article.path">
     <CardTitle :text="article.title" />
     <CardText :text="article.description" />
   </v-card>

@@ -14,6 +14,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 #sidebar {
-  width: 300px;
+  min-width: 300px;
 }
 </style>

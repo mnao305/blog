@@ -4,6 +4,7 @@
       v-for="article in articles"
       :key="article.path"
       :article="article"
+      class="article-card"
     />
   </div>
 </template>
@@ -42,3 +43,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.article-card:not(:last-child) {
+  margin-bottom: 16px;
+}
+</style>

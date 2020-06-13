@@ -3,7 +3,7 @@
     <v-content>
       <Header />
       <v-container fluid class="d-flex flex-row">
-        <v-card id="main">
+        <v-card id="main" class="pa-4">
           <nuxt />
         </v-card>
         <Sidebar />
