@@ -21,9 +21,8 @@ type postT = {
 export default defineComponent({
   setup() {
     const { $content, route } = useContext()
-    const post = useAsync(
-      async () => (await $content(route.value.path.slice(1)).fetch()) as postT
-    )
+    const path = route.value.path.slice(1)
+    const post = useAsync(async () => (await $content(path).fetch()) as postT)
 
     return { post }
   },
