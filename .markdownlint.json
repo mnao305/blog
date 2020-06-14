@@ -1,4 +1,4 @@
 {
-  "MD033": { "allowed_elements": ["script"] },
+  "MD033": { "allowed_elements": ["script", "iframe"] },
   "MD013": false
 }
