@@ -45,7 +45,7 @@ export default defineComponent({
     const createdAt = yyyymmdd(
       date.getFullYear(),
       date.getMonth() + 1,
-      date.getDate() + 1
+      date.getDate()
     )
 
     return { createdAt }
