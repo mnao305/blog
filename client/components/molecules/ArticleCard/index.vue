@@ -2,7 +2,7 @@
   <v-card nuxt :to="article.path">
     <CardTitle>{{ article.title }}</CardTitle>
     <CardSubtitle>{{ article.description }}</CardSubtitle>
-    <CardText>{{ createdAt }}</CardText>
+    <ArticleCardPostTime>{{ createdAt }}</ArticleCardPostTime>
   </v-card>
 </template>
 
@@ -10,16 +10,15 @@
 import { defineComponent, PropType } from 'nuxt-composition-api'
 import CardTitle from '@/components/atoms/CardTitle/index.vue'
 import CardSubtitle from '@/components/atoms/CardSubtitle/index.vue'
-import CardText from '@/components/atoms/CardText/index.vue'
+import ArticleCardPostTime from '@/components/molecules/ArticleCardPostTime/index.vue'
 
 type ArticleT = {
   title: string
   description: string
   path: string
   tags: string[]
-  createdAt: string
-  updatedAt: string
-  createdDate?: string
+  createdDate: string
+  updateDate?: string
 }
 
 export default defineComponent({
@@ -32,20 +31,22 @@ export default defineComponent({
   components: {
     CardTitle,
     CardSubtitle,
-    CardText,
+    ArticleCardPostTime,
   },
   setup(props) {
-    const date = props.article.createdDate ?? props.article.createdAt
+    const yyyymmdd = (y: number, m: number, d: number) => {
+      const yyyy = ('000' + y).slice(-4)
+      const mm = ('0' + m).slice(-2)
+      const dd = ('0' + d).slice(-2)
 
-    let createdAt = ''
-    // ? createdAtがブラウザ側だとStringだけどサーバ側だとObject。なぜ？
-    if (process.browser) {
-      // ブラウザ側のみで行う処理
-      createdAt = new Date(date).toString()
-    } else {
-      // const a = JSON.parse(JSON.stringify(props.article))
-      // console.log(a)
+      return `${yyyy}年${mm}月${dd}日`
     }
+    const date = new Date(props.article.createdDate)
+    const createdAt = yyyymmdd(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate() + 1
+    )
 
     return { createdAt }
   },

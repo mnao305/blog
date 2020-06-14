@@ -1,7 +1,8 @@
 ---
 title: hogehoge記事
-tags: [日本国憲法 JavaScript]
+tags: [日本国憲法, JavaScript]
 description: 日本国憲法を置いてあります
+createdDate: '2020-2-2'
 ---
 ## hogehoge記事
 
