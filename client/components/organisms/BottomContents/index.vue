@@ -1,7 +1,7 @@
 <template>
-  <v-card id="sidebar">
-    サイドバー
-  </v-card>
+  <aside id="BottomContents">
+    BottomContents Twitterとかタグ一覧とか置く感じかな？
+  </aside>
 </template>
 
 <script lang="ts">
@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-#sidebar {
-  min-width: 300px;
+#BottomContents {
+  width: 100%;
 }
 </style>
