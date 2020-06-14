@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content>
+    <v-content id="content-wrapper">
       <Header />
       <v-container fluid class="d-flex flex-row">
         <v-card id="main" class="pa-4">
@@ -29,6 +29,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+#content-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
 #main {
   width: 100%;
   margin-right: 20px;
