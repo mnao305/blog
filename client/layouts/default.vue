@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content id="content-wrapper">
+    <v-main id="content-wrapper">
       <Header />
       <v-container fluid class="d-flex flex-row">
         <v-card id="main" class="pa-4">
@@ -9,7 +9,7 @@
         <Sidebar />
       </v-container>
       <Footer />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
