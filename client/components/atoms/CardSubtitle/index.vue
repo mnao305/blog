@@ -1,13 +1,3 @@
 <template>
-  <v-card-subtitle>{{ text }}</v-card-subtitle>
+  <v-card-subtitle><slot /></v-card-subtitle>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
-
-export default defineComponent({
-  props: {
-    text: String,
-  },
-})
-</script>

@@ -1,8 +1,8 @@
 <template>
   <v-card nuxt :to="article.path">
-    <CardTitle :text="article.title" />
-    <CardSubtitle :text="article.description" />
-    <CardText :text="createdAt" />
+    <CardTitle>{{ article.title }}</CardTitle>
+    <CardSubtitle>{{ article.description }}</CardSubtitle>
+    <CardText>{{ createdAt }}</CardText>
   </v-card>
 </template>
 
