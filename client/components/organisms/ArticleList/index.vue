@@ -26,15 +26,8 @@ export default defineComponent({
       async () =>
         await $content('articles', { deep: true })
           .limit(10)
-          .only([
-            'title',
-            'tags',
-            'description',
-            'path',
-            'createdAt',
-            'updatedAt',
-            'createdDate',
-          ])
+          .only(['title', 'tags', 'description', 'path', 'createdDate'])
+          .sortBy('createdDate', 'desc')
           .fetch()
     )
     console.log(articles)
