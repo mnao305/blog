@@ -1,28 +1,28 @@
 <template>
   <div>
     <ArticleList :page="state.page" />
-    <!-- TODO 前後ボタン -->
+    <!-- TODO The client-side rendered virtual DOM tree is not matching server-rendered content.とかいうエラーが出てる。要調査 -->
+    <Pagination :page="state.page" :set-page-number="setPageNumber" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'nuxt-composition-api'
 import ArticleList from '@/components/organisms/ArticleList/index.vue'
+import Pagination from '@/components/molecules/Pagination/index.vue'
 
 export default defineComponent({
   components: {
     ArticleList,
+    Pagination,
   },
   setup() {
-    const state = reactive({ page: 0 })
-    const pageNext = () => {
-      state.page++
-    }
-    const pageBack = () => {
-      state.page--
+    const state = reactive({ page: 1 })
+    const setPageNumber = (num: number) => {
+      state.page = num
     }
 
-    return { state, pageNext, pageBack }
+    return { state, setPageNumber }
   },
 })
 </script>

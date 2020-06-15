@@ -1,7 +1,7 @@
 <template>
-  <div v-if="articles">
+  <div v-if="state.articles">
     <ArticleCard
-      v-for="article in articles"
+      v-for="article in state.articles[page - 1]"
       :key="article.path"
       :article="article"
       class="article-card"
@@ -10,29 +10,54 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useAsync, useContext } from 'nuxt-composition-api'
+import {
+  defineComponent,
+  useAsync,
+  useContext,
+  reactive,
+} from 'nuxt-composition-api'
 import ArticleCard from '@/components/molecules/ArticleCard/index.vue'
+
+type ArticleT = {
+  title: string
+  description: string
+  path: string
+  tags: string[]
+  createdDate: string
+}
 
 export default defineComponent({
   props: {
-    page: Number,
+    page: {
+      type: Number,
+      required: true,
+    },
   },
   components: {
     ArticleCard,
   },
   setup() {
     const { $content } = useContext()
+    const state = reactive({ articles: [], a: 0 }) as {
+      articles: ArticleT[][]
+      a: number
+    }
     const articles = useAsync(
       async () =>
-        await $content('articles', { deep: true })
-          .limit(10)
+        (await $content('articles', { deep: true })
           .only(['title', 'tags', 'description', 'path', 'createdDate'])
           .sortBy('createdDate', 'desc')
-          .fetch()
+          .fetch()) as ArticleT[]
     )
-    console.log(articles)
+    if (articles.value) {
+      const tmp = []
+      for (let i = 0; i < articles.value.length / 10; i++) {
+        tmp.push(articles.value.slice(i * 10, 10 + i * 10))
+      }
+      state.articles = tmp
+    }
 
-    return { articles }
+    return { state }
   },
 })
 </script>
