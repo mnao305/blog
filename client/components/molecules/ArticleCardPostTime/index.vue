@@ -12,6 +12,5 @@ export default defineComponent({
   components: {
     CardText,
   },
-  setup() {},
 })
 </script>
