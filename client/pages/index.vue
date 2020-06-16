@@ -1,7 +1,6 @@
 <template>
   <div>
     <ArticleList :page="state.page" />
-    <!-- TODO The client-side rendered virtual DOM tree is not matching server-rendered content.とかいうエラーが出てる。要調査 -->
     <Pagination :page="state.page" :set-page-number="setPageNumber" />
   </div>
 </template>

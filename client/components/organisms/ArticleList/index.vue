@@ -1,9 +1,16 @@
 <template>
-  <div v-if="state.articles">
+  <div v-if="state.articles && state.articles.length > 0">
     <ArticleCard
       v-for="article in state.articles[page - 1]"
       :key="article.path"
       :article="article"
+      class="article-card"
+    />
+  </div>
+  <div v-else>
+    <ArticleCardSkeleton
+      v-for="i in 10"
+      :key="'cardSkeleton' + i"
       class="article-card"
     />
   </div>
@@ -17,6 +24,7 @@ import {
   reactive,
 } from 'nuxt-composition-api'
 import ArticleCard from '@/components/molecules/ArticleCard/index.vue'
+import ArticleCardSkeleton from '@/components/molecules/ArticleCardSkeleton/index.vue'
 
 type ArticleT = {
   title: string
@@ -35,6 +43,7 @@ export default defineComponent({
   },
   components: {
     ArticleCard,
+    ArticleCardSkeleton,
   },
   setup() {
     const { $content } = useContext()
