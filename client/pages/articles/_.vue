@@ -1,12 +1,17 @@
 <template>
-  <div>
-    <h1 class="text-h4">{{ post ? post.title : '' }}</h1>
-    <nuxt-content :document="post" />
+  <div v-if="state.post">
+    <h1 class="text-h4">{{ state.post ? state.post.title : '' }}</h1>
+    <nuxt-content :document="state.post" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, useAsync, useContext } from 'nuxt-composition-api'
+import {
+  defineComponent,
+  reactive,
+  useContext,
+  onMounted,
+} from 'nuxt-composition-api'
 
 type postT = {
   title: string
@@ -21,10 +26,14 @@ type postT = {
 export default defineComponent({
   setup() {
     const { $content, route } = useContext()
+    const state = reactive({ post: {} }) as { post: postT }
     const path = route.value.path.slice(1)
-    const post = useAsync(async () => (await $content(path).fetch()) as postT)
+    onMounted(async () => {
+      const post = (await $content(path).fetch()) as postT
+      state.post = post
+    })
 
-    return { post }
+    return { state }
   },
 })
 </script>

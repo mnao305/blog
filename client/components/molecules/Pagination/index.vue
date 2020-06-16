@@ -9,7 +9,6 @@ import {
   computed,
   PropType,
   useContext,
-  useAsync,
 } from 'nuxt-composition-api'
 
 export default defineComponent({
@@ -38,13 +37,14 @@ export default defineComponent({
 
     const { $content } = useContext()
 
-    const articles = useAsync(
-      async () =>
-        await $content('articles', { deep: true }).only(['title']).fetch()
-    )
-    if (articles.value) {
-      state.pageLen = Math.ceil(articles.value!.length / 10)
-    }
+    ;(async () => {
+      const articles = await $content('articles', { deep: true })
+        .only(['title'])
+        .fetch()
+      if (articles) {
+        state.pageLen = Math.ceil(articles!.length / 10)
+      }
+    })()
 
     return { state }
   },

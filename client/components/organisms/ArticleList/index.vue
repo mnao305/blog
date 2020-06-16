@@ -17,12 +17,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  useAsync,
-  useContext,
-  reactive,
-} from 'nuxt-composition-api'
+import { defineComponent, useContext, reactive } from 'nuxt-composition-api'
 import ArticleCard from '@/components/molecules/ArticleCard/index.vue'
 import ArticleCardSkeleton from '@/components/molecules/ArticleCardSkeleton/index.vue'
 
@@ -51,20 +46,19 @@ export default defineComponent({
       articles: ArticleT[][]
       a: number
     }
-    const articles = useAsync(
-      async () =>
-        (await $content('articles', { deep: true })
-          .only(['title', 'tags', 'description', 'path', 'createdDate'])
-          .sortBy('createdDate', 'desc')
-          .fetch()) as ArticleT[]
-    )
-    if (articles.value) {
-      const tmp = []
-      for (let i = 0; i < articles.value.length / 10; i++) {
-        tmp.push(articles.value.slice(i * 10, 10 + i * 10))
+    ;(async () => {
+      const articles = (await $content('articles', { deep: true })
+        .only(['title', 'tags', 'description', 'path', 'createdDate'])
+        .sortBy('createdDate', 'desc')
+        .fetch()) as ArticleT[]
+      if (articles) {
+        const tmp = []
+        for (let i = 0; i < articles.length / 10; i++) {
+          tmp.push(articles.slice(i * 10, 10 + i * 10))
+        }
+        state.articles = tmp
       }
-      state.articles = tmp
-    }
+    })()
 
     return { state }
   },
