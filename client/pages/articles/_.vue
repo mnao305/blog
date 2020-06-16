@@ -28,3 +28,10 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.nuxt-content pre > code {
+  background-color: inherit;
+  padding: 0;
+}
+</style>
