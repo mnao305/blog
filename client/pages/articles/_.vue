@@ -12,6 +12,7 @@ import {
   useContext,
   onMounted,
 } from 'nuxt-composition-api'
+import LinkCard from '@/components/molecules/LinkCard/index.vue'
 
 type postT = {
   title: string
@@ -24,6 +25,9 @@ type postT = {
 }
 
 export default defineComponent({
+  components: {
+    LinkCard,
+  },
   setup() {
     const { $content, route } = useContext()
     const state = reactive({ post: {} }) as { post: postT }
