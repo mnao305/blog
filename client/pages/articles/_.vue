@@ -1,6 +1,6 @@
 <template>
   <div v-if="state.post">
-    <h1 class="text-h4">{{ state.post ? state.post.title : '' }}</h1>
+    <h1 class="text-h4 mb-2">{{ state.post ? state.post.title : '' }}</h1>
     <nuxt-content :document="state.post" />
   </div>
 </template>
@@ -43,8 +43,49 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.nuxt-content pre > code {
-  background-color: inherit;
-  padding: 0;
+.nuxt-content {
+  pre > code {
+    background-color: inherit;
+    padding: 0;
+  }
+  p,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 10px;
+  }
+  blockquote {
+    position: relative;
+    padding: 30px 15px 8px 15px;
+    box-sizing: border-box;
+    font-style: italic;
+    background: #efefef;
+    color: #555;
+    margin-bottom: 0.5em;
+    :before {
+      display: inline-block;
+      position: absolute;
+      top: 5px;
+      left: 3px;
+      content: '“';
+      font-family: sans-serif;
+      color: #cfcfcf;
+      font-size: 90px;
+      line-height: 1;
+    }
+    p {
+      padding: 0;
+      margin: 10px 0;
+      line-height: 1.7;
+    }
+    cite {
+      display: block;
+      text-align: right;
+      color: #888888;
+      font-size: 0.9em;
+    }
+  }
 }
 </style>

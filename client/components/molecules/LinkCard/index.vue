@@ -2,7 +2,7 @@
   <v-card
     :href="linkUrl"
     target="_blank"
-    class="d-flex flex-row link-card"
+    class="d-flex flex-row link-card my-3"
     max-width="600px"
   >
     <div>
@@ -10,7 +10,7 @@
       <CardText class="link-card-text">{{ text }}</CardText>
       <CardText class="link-card-url">{{ linkUrl }}</CardText>
     </div>
-    <div class="ml-auto">
+    <div v-if="imgSrc" class="ml-auto link-card-img">
       <CardImage :img-src="imgSrc" />
     </div>
   </v-card>
@@ -35,7 +35,8 @@ export default defineComponent({
     },
     text: {
       type: String,
-      required: true,
+      default: '-',
+      required: false,
     },
     linkUrl: {
       type: String,
@@ -43,13 +44,20 @@ export default defineComponent({
     },
     imgSrc: {
       type: String,
-      required: true,
+      required: false,
     },
   },
 })
 </script>
 
 <style lang="scss" scoped>
+.link-card-img {
+  display: flex;
+  align-items: center;
+  > div {
+    padding: 0;
+  }
+}
 .link-card * {
   padding: 6px;
 }
