@@ -1,7 +1,9 @@
 <template>
   <v-card nuxt :to="article.path">
     <CardTitle>{{ article.title }}</CardTitle>
-    <CardSubtitle>{{ article.description }}</CardSubtitle>
+    <CardSubtitle>
+      <v-icon class="mr-1" small>tag</v-icon>{{ tags }}
+    </CardSubtitle>
     <ArticleCardPostTime>{{ createdAt }}</ArticleCardPostTime>
   </v-card>
 </template>
@@ -48,7 +50,9 @@ export default defineComponent({
       date.getDate()
     )
 
-    return { createdAt }
+    const tags = props.article.tags.join(', ')
+
+    return { createdAt, tags }
   },
 })
 </script>
