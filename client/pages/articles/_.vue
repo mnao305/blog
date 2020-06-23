@@ -12,6 +12,8 @@ import {
   useContext,
   onMounted,
 } from 'nuxt-composition-api'
+// @ts-ignore
+import { Tweet } from 'vue-tweet-embed'
 import LinkCard from '@/components/molecules/LinkCard/index.vue'
 
 type postT = {
@@ -27,6 +29,7 @@ type postT = {
 export default defineComponent({
   components: {
     LinkCard,
+    Tweet,
   },
   setup() {
     const { $content, route } = useContext()
@@ -44,9 +47,21 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .nuxt-content {
-  pre > code {
-    background-color: inherit;
-    padding: 0;
+  /* コードブロック */
+  .nuxt-content-highlight {
+    position: relative;
+    margin: 20px 0;
+    .filename {
+      position: absolute;
+      top: -10px;
+      padding: 0 10px;
+      background: #f3ddc8;
+      margin-bottom: 4px;
+    }
+    pre > code {
+      background-color: inherit;
+      padding: 0;
+    }
   }
   p,
   h2,
@@ -56,6 +71,7 @@ export default defineComponent({
   h6 {
     margin-bottom: 10px;
   }
+  /* 引用 */
   blockquote {
     position: relative;
     padding: 30px 15px 8px 15px;
