@@ -34,7 +34,11 @@ export default defineComponent({
   setup() {
     const { $content, route } = useContext()
     const state = reactive({ post: {} }) as { post: postT }
-    const path = route.value.path.slice(1)
+    let path = route.value.path.slice(1)
+    if (path[path.length - 1] === '/') {
+      path = path.slice(0, -1)
+    }
+
     onMounted(async () => {
       const post = (await $content(path).fetch()) as postT
       state.post = post
