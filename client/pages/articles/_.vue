@@ -103,5 +103,8 @@ export default defineComponent({
       font-size: 0.9em;
     }
   }
+  img {
+    max-width: min(100%, 700px);
+  }
 }
 </style>
