@@ -1,6 +1,10 @@
 <template>
   <div v-if="state.post">
-    <h1 class="text-h4 mb-2">{{ state.post ? state.post.title : '' }}</h1>
+    <h1 class="text-h4">{{ state.post ? state.post.title : '' }}</h1>
+    <div><v-icon class="mr-1" small>tag</v-icon>{{ state.tags }}</div>
+    <div class="mb-2 d-flex justify-end">
+      <v-icon class="mr-1" small>schedule</v-icon>{{ state.createdAt }}
+    </div>
     <nuxt-content :document="state.post" />
   </div>
 </template>
@@ -33,15 +37,35 @@ export default defineComponent({
   },
   setup() {
     const { $content, route } = useContext()
-    const state = reactive({ post: {} }) as { post: postT }
+    const state = reactive({ post: {}, tags: '', createdAt: '' }) as {
+      post: postT
+      tags: string
+      createdAt: string
+    }
     let path = route.value.path.slice(1)
     if (path[path.length - 1] === '/') {
       path = path.slice(0, -1)
     }
 
+    const yyyymmdd = (y: number, m: number, d: number) => {
+      const yyyy = ('000' + y).slice(-4)
+      const mm = ('0' + m).slice(-2)
+      const dd = ('0' + d).slice(-2)
+
+      return `${yyyy}年${mm}月${dd}日`
+    }
+
     onMounted(async () => {
       const post = (await $content(path).fetch()) as postT
       state.post = post
+      state.tags = post.tags.join(', ')
+
+      const date = new Date(post.createdDate)
+      state.createdAt = yyyymmdd(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        date.getDate()
+      )
     })
 
     return { state }
@@ -50,6 +74,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  font-size: 2em !important;
+}
 .nuxt-content {
   /* コードブロック */
   .nuxt-content-highlight {
