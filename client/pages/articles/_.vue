@@ -15,6 +15,7 @@ import {
   reactive,
   useContext,
   onMounted,
+  useMeta,
 } from 'nuxt-composition-api'
 // @ts-ignore
 import { Tweet } from 'vue-tweet-embed'
@@ -35,8 +36,11 @@ export default defineComponent({
     LinkCard,
     Tweet,
   },
+  head: {},
   setup() {
     const { $content, route } = useContext()
+    const { title } = useMeta({ title: '記事ページ' })
+
     const state = reactive({ post: {}, tags: '', createdAt: '' }) as {
       post: postT
       tags: string
@@ -66,6 +70,7 @@ export default defineComponent({
         date.getMonth() + 1,
         date.getDate()
       )
+      title.value = post.title
     })
 
     return { state }

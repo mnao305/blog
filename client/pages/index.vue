@@ -15,6 +15,12 @@ export default defineComponent({
     ArticleList,
     Pagination,
   },
+  head() {
+    return {
+      title: '物置小屋',
+      titleTemplate: '',
+    }
+  },
   setup() {
     const state = reactive({ page: 1 })
     const setPageNumber = (num: number) => {
