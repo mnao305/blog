@@ -24,7 +24,7 @@ const req = https.request(url, (res: any) => {
     console.log(ogpObj)
     console.log('↓----------------')
     console.log(
-      `<link-card title="${ogpObj.site_name}" text="${ogpObj.description}" link-url="${ogpObj.url}" img-src="${ogpObj.image}"></link-card>`
+      `<link-card title="${ogpObj.title}" text="${ogpObj.description}" link-url="${ogpObj.url}" img-src="${ogpObj.image}"></link-card>`
     )
   })
 })
