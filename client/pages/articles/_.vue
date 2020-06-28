@@ -6,6 +6,10 @@
       <v-icon class="mr-1" small>schedule</v-icon>{{ state.createdAt }}
     </div>
     <nuxt-content :document="state.post" />
+    <social-share-component
+      :url="url"
+      :text="state.post ? state.post.title + ' - 物置小屋' : ''"
+    />
   </div>
 </template>
 
@@ -19,6 +23,7 @@ import {
 } from 'nuxt-composition-api'
 // @ts-ignore
 import { Tweet } from 'vue-tweet-embed'
+import { SocialShareComponent } from 'vue-social-share-component'
 import LinkCard from '@/components/molecules/LinkCard/index.vue'
 
 type postT = {
@@ -35,6 +40,7 @@ export default defineComponent({
   components: {
     LinkCard,
     Tweet,
+    SocialShareComponent,
   },
   head: {},
   setup() {
@@ -73,7 +79,9 @@ export default defineComponent({
       title.value = post.title
     })
 
-    return { state }
+    const url = `https://blog.mnao305.com/${path}`
+
+    return { state, url }
   },
 })
 </script>
