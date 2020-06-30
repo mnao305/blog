@@ -44,7 +44,7 @@ const config: Configuration = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', '@nuxt/content'],
+  modules: ['@nuxtjs/pwa', '@nuxt/content', '@nuxtjs/gtm'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -55,6 +55,12 @@ const config: Configuration = {
     defaultAssets: {
       icons: 'md',
     },
+  },
+  /**
+   * Google Tag Manager
+   */
+  gtm: {
+    id: 'GTM-WWFWH72',
   },
   /*
    ** Build configuration
