@@ -40,11 +40,12 @@ const config: Configuration = {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
     'nuxt-composition-api',
+    '@nuxtjs/gtm',
   ],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', '@nuxt/content', '@nuxtjs/gtm'],
+  modules: ['@nuxtjs/pwa', '@nuxt/content'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
