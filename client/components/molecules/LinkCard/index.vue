@@ -5,7 +5,7 @@
     class="d-flex flex-row link-card my-3"
     max-width="600px"
   >
-    <div>
+    <div :class="{ 'link-card-left': imgSrc }">
       <CardTitle>{{ title }}</CardTitle>
       <CardText class="link-card-text">{{ text }}</CardText>
       <CardText class="link-card-url">{{ linkUrl }}</CardText>
@@ -67,5 +67,8 @@ export default defineComponent({
 .link-card-url {
   font-size: 10px;
   color: gray;
+}
+.link-card-left {
+  width: calc(100% - 112px);
 }
 </style>
