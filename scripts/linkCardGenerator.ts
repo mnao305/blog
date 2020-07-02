@@ -38,7 +38,7 @@ const req = https.request(url, (res: any) => {
         ogpObj.description
       }" link-url="${
         ogpObj.url
-      }" img-src="${`client/static/link_img/${fileName}.png`}"></link-card>`
+      }" img-src="${`/link_img/${fileName}.png`}"></link-card>`
     )
   })
 })
