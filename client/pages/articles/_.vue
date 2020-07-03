@@ -45,7 +45,17 @@ export default defineComponent({
   head: {},
   setup() {
     const { $content, route } = useContext()
-    const { title } = useMeta({ title: '記事ページ' })
+    const { title, meta } = useMeta({
+      title: '記事ページ',
+      meta: [
+        {
+          property: 'og:title',
+          content: '記事ページ',
+          'data-hid': 'og:title',
+          name: 'og:title',
+        },
+      ],
+    })
 
     const state = reactive({ post: {}, tags: '', createdAt: '' }) as {
       post: postT
@@ -77,6 +87,7 @@ export default defineComponent({
         date.getDate()
       )
       title.value = post.title
+      meta.value[0].content = post.title
     })
 
     const url = `https://blog.mnao305.com/${path}`
