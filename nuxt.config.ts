@@ -16,6 +16,12 @@ const config: Configuration = {
         name: 'description',
         content: 'mnao305のメモブログです',
       },
+      { hid: 'og:site_name', property: 'og:site_name', content: '物置小屋' },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content: 'mnao305のメモブログです',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
