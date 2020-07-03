@@ -1,9 +1,11 @@
 <template>
   <aside id="BottomContents">
-    <img
-      class="github-grass-img"
-      src="https://grass-graph.moshimo.works/images/mnao305.png"
-    />
+    <a target="_blank" href="https://github.com/mnao305">
+      <img
+        class="github-grass-img"
+        src="https://grass-graph.moshimo.works/images/mnao305.png"
+      />
+    </a>
     <!-- BottomContents Twitterとかタグ一覧とか置く感じかな？ -->
   </aside>
 </template>
