@@ -22,6 +22,11 @@ const config: Configuration = {
         name: 'og:description',
         content: 'mnao305のメモブログです',
       },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: '物置小屋',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
