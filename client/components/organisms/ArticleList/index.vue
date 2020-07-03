@@ -1,7 +1,7 @@
 <template>
   <div v-if="state.articles && state.articles.length > 0">
     <ArticleCard
-      v-for="article in state.articles[page - 1]"
+      v-for="article in state.articles.slice(0, 10 * page)"
       :key="article.path"
       :article="article"
       class="article-card"
@@ -35,15 +35,19 @@ export default defineComponent({
       type: Number,
       required: true,
     },
+    setArticleNum: {
+      type: Function,
+      required: true,
+    },
   },
   components: {
     ArticleCard,
     ArticleCardSkeleton,
   },
-  setup() {
+  setup(props) {
     const { $content } = useContext()
     const state = reactive({ articles: [], a: 0 }) as {
-      articles: ArticleT[][]
+      articles: ArticleT[]
       a: number
     }
     ;(async () => {
@@ -52,11 +56,8 @@ export default defineComponent({
         .sortBy('createdDate', 'desc')
         .fetch()) as ArticleT[]
       if (articles) {
-        const tmp = []
-        for (let i = 0; i < articles.length / 10; i++) {
-          tmp.push(articles.slice(i * 10, 10 + i * 10))
-        }
-        state.articles = tmp
+        state.articles = articles
+        props.setArticleNum(articles.length)
       }
     })()
 

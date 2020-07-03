@@ -1,19 +1,23 @@
 <template>
   <div>
-    <ArticleList :page="state.page" />
-    <Pagination :page="state.page" :set-page-number="setPageNumber" />
+    <ArticleList :page="state.page" :set-article-num="setArticleNum" />
+    <MoreButton
+      v-if="10 * state.page < state.articleNum"
+      class="more-button"
+      :on-click="incrementPage"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'nuxt-composition-api'
 import ArticleList from '@/components/organisms/ArticleList/index.vue'
-import Pagination from '@/components/molecules/Pagination/index.vue'
+import MoreButton from '@/components/atoms/MoreButton/index.vue'
 
 export default defineComponent({
   components: {
     ArticleList,
-    Pagination,
+    MoreButton,
   },
   head() {
     return {
@@ -22,12 +26,23 @@ export default defineComponent({
     }
   },
   setup() {
-    const state = reactive({ page: 1 })
-    const setPageNumber = (num: number) => {
-      state.page = num
+    const state = reactive({ page: 1, articleNum: 0 })
+    const incrementPage = () => {
+      state.page++
     }
 
-    return { state, setPageNumber }
+    const setArticleNum = (num: number) => {
+      state.articleNum = num
+    }
+
+    return { state, incrementPage, setArticleNum }
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.more-button {
+  display: block;
+  margin: 16px auto;
+}
+</style>
