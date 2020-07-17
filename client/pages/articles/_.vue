@@ -126,6 +126,24 @@ h1 {
   h6 {
     margin-bottom: 10px;
   }
+
+  /* hタグ用の飾り */
+  h2::before {
+    content: '# ';
+  }
+  h3::before {
+    content: '## ';
+  }
+  h4::before {
+    content: '### ';
+  }
+  h5::before {
+    content: '#### ';
+  }
+  h6::before {
+    content: '##### ';
+  }
+
   /* 引用 */
   blockquote {
     position: relative;
