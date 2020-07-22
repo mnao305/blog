@@ -6,6 +6,9 @@
         src="https://grass-graph.moshimo.works/images/mnao305.png"
       />
     </a>
+    <nuxt-link to="/about">
+      About(免責事項/Googleアナリティクスについて)
+    </nuxt-link>
     <!-- BottomContents Twitterとかタグ一覧とか置く感じかな？ -->
   </aside>
 </template>
