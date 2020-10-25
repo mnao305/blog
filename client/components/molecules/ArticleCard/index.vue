@@ -4,7 +4,10 @@
     <CardSubtitle v-if="tags">
       <v-icon class="mr-1" small>tag</v-icon>{{ tags }}
     </CardSubtitle>
-    <ArticleCardPostTime>{{ createdAt }}</ArticleCardPostTime>
+    <div class="d-flex">
+      <ArticleCardFromSite v-if="site">{{ site }}</ArticleCardFromSite>
+      <ArticleCardPostTime>{{ createdAt }}</ArticleCardPostTime>
+    </div>
   </v-card>
 </template>
 
@@ -13,6 +16,7 @@ import { defineComponent, PropType } from 'nuxt-composition-api'
 import CardTitle from '@/components/atoms/CardTitle/index.vue'
 import CardSubtitle from '@/components/atoms/CardSubtitle/index.vue'
 import ArticleCardPostTime from '@/components/molecules/ArticleCardPostTime/index.vue'
+import ArticleCardFromSite from '@/components/molecules/ArticleCardFromSite/index.vue'
 import { ArticleT } from '~/components/organisms/ArticleList/index.vue'
 
 export default defineComponent({
@@ -26,6 +30,7 @@ export default defineComponent({
     CardTitle,
     CardSubtitle,
     ArticleCardPostTime,
+    ArticleCardFromSite,
   },
   setup(props) {
     const yyyymmdd = (y: number, m: number, d: number) => {
@@ -55,7 +60,18 @@ export default defineComponent({
         ? props.article.categories.join(', ')
         : ''
 
-    return { createdAt, tags }
+    let site = ''
+    if (props.article.link && props.article.link.match('hatena') != null) {
+      site = 'Hatena blog'
+    } else if (
+      props.article.link &&
+      props.article.link.match('qiita') != null
+    ) {
+      site = 'Qiita'
+    }
+    console.log(props.article.title, site)
+
+    return { createdAt, tags, site }
   },
 })
 </script>
