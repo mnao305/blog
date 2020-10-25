@@ -33,6 +33,7 @@
     "jsdom": "^16.2.2",
     "nuxt": "^2.13.0",
     "nuxt-composition-api": "^0.8.2",
+    "rss-parser": "^3.9.0",
     "vue-social-share-component": "^1.1.0",
     "vue-tweet-embed": "^2.4.0"
   },
@@ -44,6 +45,7 @@
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/stylelint-module": "^3.2.2",
     "@nuxtjs/vuetify": "^1.11.2",
+    "@types/xml2js": "^0.4.5",
     "babel-eslint": "^10.0.1",
     "commitizen": "^4.1.2",
     "eslint": "^6.1.0",
