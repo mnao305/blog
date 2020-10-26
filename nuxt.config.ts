@@ -110,15 +110,15 @@ const config: Configuration = {
 
         articles.forEach((article: any) => {
           const url = `${baseUrlArticles}/${article.slug}`
+          const description = article.description ?? ''
 
           feed.addItem({
             title: article.title,
             id: url,
             link: url,
-            date: article.published,
-            description: article.summary,
-            content: article.summary,
-            author: article.authors,
+            date: new Date(article.createdDate),
+            description,
+            content: description,
           })
         })
       },
