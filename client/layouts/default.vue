@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import Header from '@/components/organisms/Header/index.vue'
 import Footer from '@/components/organisms/Footer/index.vue'
 import BottomContents from '@/components/organisms/BottomContents/index.vue'

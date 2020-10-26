@@ -51,7 +51,7 @@ const config: Configuration = {
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
-    'nuxt-composition-api',
+    '@nuxtjs/composition-api',
     '@nuxtjs/gtm',
   ],
   /*

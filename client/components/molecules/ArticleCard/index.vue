@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'nuxt-composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import CardTitle from '@/components/atoms/CardTitle/index.vue'
 import CardSubtitle from '@/components/atoms/CardSubtitle/index.vue'
 import ArticleCardPostTime from '@/components/molecules/ArticleCardPostTime/index.vue'

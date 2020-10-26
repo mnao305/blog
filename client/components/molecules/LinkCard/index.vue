@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import CardTitle from '@/components/atoms/CardTitle/index.vue'
 import CardText from '@/components/atoms/CardText/index.vue'
 import CardImage from '@/components/atoms/CardImage/index.vue'

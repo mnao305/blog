@@ -14,7 +14,7 @@
           src="https://github.com/sponsors/mnao305/card"
           title="Sponsor mnao305"
           width="100%"
-          style="border: 0;"
+          style="border: 0"
         ></iframe>
       </v-col>
       <v-col cols="12" md="6">
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({})
 </script>

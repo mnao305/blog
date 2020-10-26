@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'nuxt-composition-api'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
 import ArticleList from '@/components/organisms/ArticleList/index.vue'
 import MoreButton from '@/components/atoms/MoreButton/index.vue'
 

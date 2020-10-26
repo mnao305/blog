@@ -17,7 +17,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext, useAsync } from 'nuxt-composition-api'
+import {
+  defineComponent,
+  useContext,
+  useAsync,
+  PropType,
+} from '@nuxtjs/composition-api'
 import Parser from 'rss-parser'
 import ArticleCard from '@/components/molecules/ArticleCard/index.vue'
 import ArticleCardSkeleton from '@/components/molecules/ArticleCardSkeleton/index.vue'
@@ -39,7 +44,7 @@ export default defineComponent({
       required: true,
     },
     setArticleNum: {
-      type: Function,
+      type: Function as PropType<(num: number) => void>,
       required: true,
     },
   },

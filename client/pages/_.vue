@@ -19,7 +19,7 @@ import {
   useContext,
   useMeta,
   useAsync,
-} from 'nuxt-composition-api'
+} from '@nuxtjs/composition-api'
 // @ts-ignore
 import { Tweet } from 'vue-tweet-embed'
 import { SocialShareComponent } from 'vue-social-share-component'
@@ -44,17 +44,18 @@ export default defineComponent({
   head: {},
   setup() {
     const { $content, route } = useContext()
-    const { title, meta } = useMeta({
-      title: '記事ページ',
-      meta: [
-        {
-          property: 'og:title',
-          content: '記事ページ',
-          'data-hid': 'og:title',
-          name: 'og:title',
-        },
-      ],
-    })
+    // const { title, meta } = useMeta({
+    //   title: '記事ページ',
+    //   meta: [
+    //     {
+    //       property: 'og:title',
+    //       content: '記事ページ',
+    //       'data-hid': 'og:title',
+    //       type: 'article',
+    //       name: 'og:title',
+    //     },
+    //   ],
+    // })
 
     let path = route.value.path.slice(1)
     if (path[path.length - 1] === '/') {
@@ -69,10 +70,8 @@ export default defineComponent({
       return `${yyyy}年${mm}月${dd}日`
     }
     const state = useAsync(async () => {
-      const post = (await $content(path).fetch()) as postT
+      const post: postT = await $content(path).fetch<postT>()
       const date = new Date(`${post.createdDate}+09:00`)
-      title.value = post.title
-      meta.value[0].content = post.title
       return {
         post,
         categories: post.categories.join(', '),
@@ -82,6 +81,19 @@ export default defineComponent({
           date.getDate()
         ),
       }
+    })
+
+    useMeta({
+      title: state.value?.post.title ?? '',
+      meta: [
+        {
+          property: 'og:title',
+          content: state.value?.post.title ?? '',
+          'data-hid': 'og:title',
+          type: 'article',
+          name: 'og:title',
+        },
+      ],
     })
 
     const url = `https://blog.mnao305.com/${path}`
