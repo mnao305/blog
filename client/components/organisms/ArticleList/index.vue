@@ -54,16 +54,27 @@ export default defineComponent({
       let len = 0
       const parser = new Parser()
       // はてなブログの記事
-      const hatena = await parser.parseURL('https://mnao305.hatenablog.com/rss')
-      if (hatena.items) {
-        articles.push(...hatena.items)
-        len += hatena.items.length
+      try {
+        const hatena = await parser.parseURL(
+          'https://mnao305.hatenablog.com/rss'
+        )
+        if (hatena.items) {
+          articles.push(...hatena.items)
+          len += hatena.items.length
+        }
+      } catch (e) {
+        console.error(e)
       }
+
       // Qiitaの記事
-      const qiita = await parser.parseURL('https://qiita.com/mnao305/feed')
-      if (qiita.items) {
-        articles.push(...qiita.items)
-        len += qiita.items.length
+      try {
+        const qiita = await parser.parseURL('https://qiita.com/mnao305/feed')
+        if (qiita.items) {
+          articles.push(...qiita.items)
+          len += qiita.items.length
+        }
+      } catch (e) {
+        console.error(e)
       }
 
       const posts = await $content('/', { deep: true })
