@@ -80,7 +80,7 @@ export default defineComponent({
       state.post = post
       state.tags = post.tags.join(', ')
 
-      const date = new Date(post.createdDate)
+      const date = new Date(`${post.createdDate}+09:00`)
       state.createdAt = yyyymmdd(
         date.getFullYear(),
         date.getMonth() + 1,

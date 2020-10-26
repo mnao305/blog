@@ -116,7 +116,7 @@ const config: Configuration = {
             title: article.title,
             id: url,
             link: url,
-            date: new Date(article.createdDate),
+            date: new Date(`${article.createdDate}+09:00`),
             description,
             content: description,
           })

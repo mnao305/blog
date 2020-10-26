@@ -46,7 +46,7 @@ export default defineComponent({
     } else if (props.article.pubDate) {
       strDate = props.article.pubDate
     }
-    const date = new Date(strDate)
+    const date = new Date(`${strDate}+09:00`)
     const createdAt = yyyymmdd(
       date.getFullYear(),
       date.getMonth() + 1,
