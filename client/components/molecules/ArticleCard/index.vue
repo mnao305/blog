@@ -69,7 +69,6 @@ export default defineComponent({
     ) {
       site = 'Qiita'
     }
-    console.log(props.article.title, site)
 
     return { createdAt, tags, site }
   },

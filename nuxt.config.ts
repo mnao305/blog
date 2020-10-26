@@ -124,49 +124,6 @@ const config: Configuration = {
       },
     },
   ],
-
-  // feed() {
-  //   const baseUrlArticles = 'https://blog.mnao305.com/'
-  //   const baseLinkFeedArticles = '/feed'
-  //   const feedFormats = {
-  //     rss: { type: 'rss2', file: 'rss.xml' },
-  //     atom: { type: 'atom1', file: 'atom.xml' },
-  //     json: { type: 'json1', file: 'feed.json' },
-  //   }
-  //   const { $content } = require('@nuxt/content')
-
-  //   const createFeedArticles = async function (feed: any) {
-  //     console.log(feed)
-
-  //     feed.options = {
-  //       title: '物置小屋',
-  //       description: 'mnao305のブログです',
-  //       link: baseUrlArticles,
-  //     }
-  //     const articles = await $content('/').fetch()
-
-  //     articles.forEach((article: any) => {
-  //       const url = `${baseUrlArticles}/${article.slug}`
-  //       console.log(article)
-
-  //       feed.addItem({
-  //         title: article.title,
-  //         id: url,
-  //         link: url,
-  //         date: article.published,
-  //         description: article.summary,
-  //         content: article.summary,
-  //         author: article.authors,
-  //       })
-  //     })
-  //   }
-
-  //   return Object.values(feedFormats).map(({ file, type }) => ({
-  //     path: `${baseLinkFeedArticles}/${file}`,
-  //     type,
-  //     create: createFeedArticles,
-  //   }))
-  // },
 }
 
 export default config
