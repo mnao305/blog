@@ -9,7 +9,7 @@
     <social-share-component
       :url="url"
       :text="state.post ? state.post.title + ' - 物置小屋' : ''"
-    />
+    ></social-share-component>
   </div>
 </template>
 

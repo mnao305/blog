@@ -67,7 +67,7 @@ export default defineComponent({
         len += qiita.items.length
       }
 
-      const posts = (await $content('articles', { deep: true })
+      const posts = (await $content('/', { deep: true })
         .only(['title', 'tags', 'description', 'path', 'createdDate'])
         .sortBy('createdDate', 'desc')
         .fetch()) as ArticleT[]
