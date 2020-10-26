@@ -1,7 +1,7 @@
 <template>
   <div v-if="state.post">
     <h1 class="text-h4">{{ state.post ? state.post.title : '' }}</h1>
-    <div><v-icon class="mr-1" small>tag</v-icon>{{ state.tags }}</div>
+    <div><v-icon class="mr-1" small>tag</v-icon>{{ state.categories }}</div>
     <div class="mb-2 d-flex justify-end">
       <v-icon class="mr-1" small>schedule</v-icon>{{ state.createdAt }}
     </div>
@@ -30,7 +30,7 @@ type postT = {
   title: string
   description: string
   path: string
-  tags: string[]
+  categories: string[]
   createdDate: string
   updateDate?: string
   body: Object
@@ -57,9 +57,9 @@ export default defineComponent({
       ],
     })
 
-    const state = reactive({ post: {}, tags: '', createdAt: '' }) as {
+    const state = reactive({ post: {}, categories: '', createdAt: '' }) as {
       post: postT
-      tags: string
+      categories: string
       createdAt: string
     }
     let path = route.value.path.slice(1)
@@ -78,7 +78,7 @@ export default defineComponent({
     onMounted(async () => {
       const post = (await $content(path).fetch()) as postT
       state.post = post
-      state.tags = post.tags.join(', ')
+      state.categories = post.categories.join(', ')
 
       const date = new Date(`${post.createdDate}+09:00`)
       state.createdAt = yyyymmdd(

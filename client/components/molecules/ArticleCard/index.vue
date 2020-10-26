@@ -1,8 +1,8 @@
 <template>
   <v-card nuxt :to="article.path" :href="article.link">
     <CardTitle>{{ article.title }}</CardTitle>
-    <CardSubtitle v-if="tags">
-      <v-icon class="mr-1" small>tag</v-icon>{{ tags }}
+    <CardSubtitle v-if="categories">
+      <v-icon class="mr-1" small>tag</v-icon>{{ categories }}
     </CardSubtitle>
     <div class="d-flex">
       <ArticleCardFromSite v-if="site">{{ site }}</ArticleCardFromSite>
@@ -53,12 +53,7 @@ export default defineComponent({
       date.getDate()
     )
 
-    const tags =
-      props.article.tags !== undefined
-        ? props.article.tags.join(', ')
-        : props.article.categories !== undefined
-        ? props.article.categories.join(', ')
-        : ''
+    const categories = props.article.categories?.join(', ') ?? ''
 
     let site = ''
     if (props.article.link && props.article.link.match('hatena') != null) {
@@ -70,7 +65,7 @@ export default defineComponent({
       site = 'Qiita'
     }
 
-    return { createdAt, tags, site }
+    return { createdAt, categories, site }
   },
 })
 </script>

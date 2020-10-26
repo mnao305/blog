@@ -26,11 +26,10 @@ export type ArticleT = {
   title?: string
   description?: string
   path?: string
-  tags?: string[]
+  categories?: string[]
   createdDate?: string
   link?: string
   pubDate?: string
-  categories?: string[]
 }
 
 export default defineComponent({
@@ -67,10 +66,10 @@ export default defineComponent({
         len += qiita.items.length
       }
 
-      const posts = (await $content('/', { deep: true })
-        .only(['title', 'tags', 'description', 'path', 'createdDate'])
+      const posts = await $content('/', { deep: true })
+        .only(['title', 'categories', 'description', 'path', 'createdDate'])
         .sortBy('createdDate', 'desc')
-        .fetch()) as ArticleT[]
+        .fetch<ArticleT[]>()
       if (posts) {
         articles.push(...posts)
         len += posts.length
