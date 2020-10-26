@@ -1,5 +1,5 @@
 <template>
-  <div v-if="state.post">
+  <div v-if="state && state.post">
     <h1 class="text-h4">{{ state.post ? state.post.title : '' }}</h1>
     <div><v-icon class="mr-1" small>tag</v-icon>{{ state.categories }}</div>
     <div class="mb-2 d-flex justify-end">
@@ -16,10 +16,9 @@
 <script lang="ts">
 import {
   defineComponent,
-  reactive,
   useContext,
-  onMounted,
   useMeta,
+  useAsync,
 } from 'nuxt-composition-api'
 // @ts-ignore
 import { Tweet } from 'vue-tweet-embed'
@@ -57,11 +56,6 @@ export default defineComponent({
       ],
     })
 
-    const state = reactive({ post: {}, categories: '', createdAt: '' }) as {
-      post: postT
-      categories: string
-      createdAt: string
-    }
     let path = route.value.path.slice(1)
     if (path[path.length - 1] === '/') {
       path = path.slice(0, -1)
@@ -74,20 +68,20 @@ export default defineComponent({
 
       return `${yyyy}年${mm}月${dd}日`
     }
-
-    onMounted(async () => {
+    const state = useAsync(async () => {
       const post = (await $content(path).fetch()) as postT
-      state.post = post
-      state.categories = post.categories.join(', ')
-
       const date = new Date(`${post.createdDate}+09:00`)
-      state.createdAt = yyyymmdd(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        date.getDate()
-      )
       title.value = post.title
       meta.value[0].content = post.title
+      return {
+        post,
+        categories: post.categories.join(', '),
+        createdAt: yyyymmdd(
+          date.getFullYear(),
+          date.getMonth() + 1,
+          date.getDate()
+        ),
+      }
     })
 
     const url = `https://blog.mnao305.com/${path}`
