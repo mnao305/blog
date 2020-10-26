@@ -70,7 +70,7 @@ export default defineComponent({
       return `${yyyy}年${mm}月${dd}日`
     }
     const state = useAsync(async () => {
-      const post: postT = await $content(path).fetch<postT>()
+      const post = (await $content(path).fetch<postT>()) as postT
       const date = new Date(`${post.createdDate}+09:00`)
       return {
         post,
