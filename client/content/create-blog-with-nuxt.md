@@ -1,5 +1,6 @@
 ---
 title: nuxt/contentを使ってブログを自作してみた話
+description: Nuxt.js + TypeScript + nuxt/content構成でブログを作った話
 tags: [JavaScript, TypeScript, Nuxt.js, Vuetify, 作ったもの]
 createdDate: '2020-10-25'
 ---
