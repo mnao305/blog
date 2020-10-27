@@ -35,7 +35,7 @@
     "jsdom": "^16.4.0",
     "nuxt": "^2.14.7",
     "rss-parser": "^3.9.0",
-    "vue-social-share-component": "^1.1.0",
+    "vue-social-share-component": "^1.1.4",
     "vue-tweet-embed": "^2.4.0"
   },
   "devDependencies": {
