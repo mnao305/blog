@@ -18,7 +18,7 @@ import {
   defineComponent,
   useContext,
   useMeta,
-  useAsync,
+  useStatic,
 } from '@nuxtjs/composition-api'
 // @ts-ignore
 import { Tweet } from 'vue-tweet-embed'
@@ -69,19 +69,23 @@ export default defineComponent({
 
       return `${yyyy}年${mm}月${dd}日`
     }
-    const state = useAsync(async () => {
-      const post = (await $content(path).fetch<postT>()) as postT
-      const date = new Date(`${post.createdDate}+09:00`)
-      return {
-        post,
-        categories: post.categories.join(', '),
-        createdAt: yyyymmdd(
-          date.getFullYear(),
-          date.getMonth() + 1,
-          date.getDate()
-        ),
-      }
-    })
+    const state = useStatic(
+      async () => {
+        const post = (await $content(path).fetch<postT>()) as postT
+        const date = new Date(`${post.createdDate}+09:00`)
+        return {
+          post,
+          categories: post.categories.join(', '),
+          createdAt: yyyymmdd(
+            date.getFullYear(),
+            date.getMonth() + 1,
+            date.getDate()
+          ),
+        }
+      },
+      undefined,
+      `post_${path}`
+    )
 
     useMeta({
       title: state.value?.post.title ?? '',

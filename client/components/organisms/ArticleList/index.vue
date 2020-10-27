@@ -20,8 +20,8 @@
 import {
   defineComponent,
   useContext,
-  useAsync,
   PropType,
+  useStatic,
 } from '@nuxtjs/composition-api'
 import Parser from 'rss-parser'
 import ArticleCard from '@/components/molecules/ArticleCard/index.vue'
@@ -54,52 +54,56 @@ export default defineComponent({
   },
   setup(props) {
     const { $content } = useContext()
-    const state = useAsync(async () => {
-      let articles = [] as ArticleT[]
-      let len = 0
-      const parser = new Parser()
-      // はてなブログの記事
-      try {
-        const hatena = await parser.parseURL(
-          'https://mnao305.hatenablog.com/rss'
-        )
-        if (hatena.items) {
-          articles.push(...hatena.items)
-          len += hatena.items.length
+    const state = useStatic(
+      async () => {
+        let articles = [] as ArticleT[]
+        let len = 0
+        const parser = new Parser()
+        // はてなブログの記事
+        try {
+          const hatena = await parser.parseURL(
+            'https://mnao305.hatenablog.com/rss'
+          )
+          if (hatena.items) {
+            articles.push(...hatena.items)
+            len += hatena.items.length
+          }
+        } catch (e) {
+          console.error(e)
         }
-      } catch (e) {
-        console.error(e)
-      }
 
-      // Qiitaの記事
-      try {
-        const qiita = await parser.parseURL('https://qiita.com/mnao305/feed')
-        if (qiita.items) {
-          articles.push(...qiita.items)
-          len += qiita.items.length
+        // Qiitaの記事
+        try {
+          const qiita = await parser.parseURL('https://qiita.com/mnao305/feed')
+          if (qiita.items) {
+            articles.push(...qiita.items)
+            len += qiita.items.length
+          }
+        } catch (e) {
+          console.error(e)
         }
-      } catch (e) {
-        console.error(e)
-      }
 
-      const posts = await $content('/', { deep: true })
-        .only(['title', 'categories', 'description', 'path', 'createdDate'])
-        .sortBy('createdDate', 'desc')
-        .fetch<ArticleT[]>()
-      if (posts) {
-        articles.push(...posts)
-        len += posts.length
-      }
-      // 全記事を日付の降順でソートする
-      articles = articles.sort((a, b) => {
-        const aDate = (a.createdDate ?? a.pubDate) as string
-        const bDate = (b.createdDate ?? b.pubDate) as string
-        // @ts-ignore
-        return new Date(bDate) - new Date(aDate)
-      })
+        const posts = await $content('/', { deep: true })
+          .only(['title', 'categories', 'description', 'path', 'createdDate'])
+          .sortBy('createdDate', 'desc')
+          .fetch<ArticleT[]>()
+        if (posts) {
+          articles.push(...posts)
+          len += posts.length
+        }
+        // 全記事を日付の降順でソートする
+        articles = articles.sort((a, b) => {
+          const aDate = (a.createdDate ?? a.pubDate) as string
+          const bDate = (b.createdDate ?? b.pubDate) as string
+          // @ts-ignore
+          return new Date(bDate) - new Date(aDate)
+        })
 
-      return { articles, len }
-    })
+        return { articles, len }
+      },
+      undefined,
+      'state'
+    )
     props.setArticleNum(state.value != null ? state.value.len : 0)
     return { state }
   },
