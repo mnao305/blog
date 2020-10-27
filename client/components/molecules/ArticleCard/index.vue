@@ -40,13 +40,13 @@ export default defineComponent({
 
       return `${yyyy}年${mm}月${dd}日`
     }
-    let strDate = ''
-    if (props.article.createdDate) {
-      strDate = props.article.createdDate
+    let strDate: any = ''
+    if (props.article.createdAt) {
+      strDate = props.article.createdAt
     } else if (props.article.pubDate) {
       strDate = props.article.pubDate
     }
-    const date = new Date(`${strDate}+09:00`)
+    const date = new Date(strDate)
     const createdAt = yyyymmdd(
       date.getFullYear(),
       date.getMonth() + 1,

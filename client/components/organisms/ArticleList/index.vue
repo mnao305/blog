@@ -32,7 +32,7 @@ export type ArticleT = {
   description?: string
   path?: string
   categories?: string[]
-  createdDate?: string
+  createdAt?: Date
   link?: string
   pubDate?: string
 }
@@ -84,8 +84,8 @@ export default defineComponent({
         }
 
         const posts = await $content('/', { deep: true })
-          .only(['title', 'categories', 'description', 'path', 'createdDate'])
-          .sortBy('createdDate', 'desc')
+          .only(['title', 'categories', 'description', 'path', 'createdAt'])
+          .sortBy('createdAt', 'desc')
           .fetch<ArticleT[]>()
         if (posts) {
           articles.push(...posts)
@@ -93,8 +93,8 @@ export default defineComponent({
         }
         // 全記事を日付の降順でソートする
         articles = articles.sort((a, b) => {
-          const aDate = (a.createdDate ?? a.pubDate) as string
-          const bDate = (b.createdDate ?? b.pubDate) as string
+          const aDate = (a.createdAt ?? a.pubDate) as string
+          const bDate = (b.createdAt ?? b.pubDate) as string
           // @ts-ignore
           return new Date(bDate) - new Date(aDate)
         })

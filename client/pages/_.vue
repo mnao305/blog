@@ -30,8 +30,8 @@ type postT = {
   description: string
   path: string
   categories: string[]
-  createdDate: string
-  updateDate?: string
+  createdAt: Date
+  updatedAt?: Date
   body: Object
 }
 
@@ -72,7 +72,7 @@ export default defineComponent({
     const state = useStatic(
       async () => {
         const post = (await $content(path).fetch<postT>()) as postT
-        const date = new Date(`${post.createdDate}+09:00`)
+        const date = new Date(post.createdAt)
         return {
           post,
           categories: post.categories.join(', '),
