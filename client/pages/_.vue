@@ -6,11 +6,12 @@
       <v-icon class="mr-1" small>schedule</v-icon>{{ state.createdAt }}
     </div>
     <nuxt-content :document="state.post" />
-    <!-- エラーが出てるので一時的にコメントアウト -->
-    <!-- <social-share-component
-      :url="url"
-      :text="state.post ? state.post.title + ' - 物置小屋' : ''"
-    ></social-share-component> -->
+    <client-only>
+      <social-share-component
+        :url="url"
+        :text="state.post ? state.post.title + ' - 物置小屋' : ''"
+      />
+    </client-only>
   </div>
 </template>
 
