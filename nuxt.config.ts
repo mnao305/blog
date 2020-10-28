@@ -3,7 +3,6 @@ import { Configuration } from '@nuxt/types'
 const config: Configuration = {
   mode: 'universal',
   srcDir: 'client',
-  target: 'static',
   /*
    ** Headers of the page
    */
