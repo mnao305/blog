@@ -23,6 +23,9 @@ export default defineComponent({
     return {
       title: '物置小屋',
       titleTemplate: '',
+      htmlAttrs: {
+        lang: 'ja',
+      },
     }
   },
   setup() {

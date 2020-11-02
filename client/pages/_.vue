@@ -43,7 +43,11 @@ export default defineComponent({
     Tweet,
     SocialShareComponent,
   },
-  head: {},
+  head: {
+    htmlAttrs: {
+      lang: 'ja',
+    },
+  },
   setup() {
     const { $content, route } = useContext()
     // const { title, meta } = useMeta({

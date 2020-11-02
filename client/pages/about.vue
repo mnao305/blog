@@ -62,6 +62,9 @@ export default defineComponent({
   head() {
     return {
       title: 'About',
+      htmlAttrs: {
+        lang: 'ja',
+      },
     }
   },
   setup() {},
