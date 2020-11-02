@@ -1,7 +1,6 @@
 import { NuxtConfig } from '@nuxt/types'
 
 const config: NuxtConfig = {
-  mode: 'universal',
   srcDir: 'client',
   target: 'static',
   /*
