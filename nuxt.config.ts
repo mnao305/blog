@@ -117,7 +117,7 @@ const config: NuxtConfig = {
           feed.addItem({
             title: article.title,
             id: url,
-            link: url,
+            path: url,
             date: new Date(article.createdAt),
             description,
             content: description,
