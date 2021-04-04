@@ -1,5 +1,5 @@
 <template>
-  <v-card nuxt :href="article.path">
+  <v-card nuxt :href="article.path || article.link">
     <CardTitle>{{ article.title }}</CardTitle>
     <CardSubtitle v-if="categories">
       <v-icon class="mr-1" small>tag</v-icon>{{ categories }}
