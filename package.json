@@ -30,7 +30,7 @@
     "@nuxt/typescript-runtime": "2.1.0",
     "@nuxtjs/composition-api": "0.22.4",
     "@nuxtjs/feed": "2.0.0",
-    "@nuxtjs/gtm": "2.3.2",
+    "@nuxtjs/gtm": "2.4.0",
     "@nuxtjs/pwa": "3.2.2",
     "jsdom": "16.4.0",
     "nuxt": "2.15.4",
