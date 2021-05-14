@@ -60,7 +60,7 @@
     "material-design-icons-iconfont": "5.0.1",
     "node-sass": "4.14.1",
     "prettier": "2.3.0",
-    "sass-loader": "8.0.2",
+    "sass-loader": "11.1.1",
     "sharp": "0.28.1",
     "stylelint": "13.13.0"
   }
