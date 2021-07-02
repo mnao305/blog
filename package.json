@@ -47,7 +47,7 @@
     "@nuxtjs/eslint-module": "3.0.2",
     "@nuxtjs/stylelint-module": "3.2.2",
     "@nuxtjs/vuetify": "1.11.2",
-    "@types/xml2js": "0.4.8",
+    "@types/xml2js": "0.4.9",
     "babel-eslint": "10.1.0",
     "commitizen": "4.2.4",
     "eslint": "6.8.0",
@@ -59,7 +59,7 @@
     "markdownlint-cli": "0.27.1",
     "material-design-icons-iconfont": "5.0.1",
     "node-sass": "4.14.1",
-    "prettier": "2.3.1",
+    "prettier": "2.3.2",
     "sass-loader": "8.0.2",
     "sharp": "0.28.3",
     "stylelint": "13.13.1"
