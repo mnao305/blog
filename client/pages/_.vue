@@ -1,31 +1,24 @@
 <template>
-  <div v-if="state && state.post">
-    <h1 class="text-h4">{{ state.post ? state.post.title : '' }}</h1>
-    <div><v-icon class="mr-1" small>tag</v-icon>{{ state.categories }}</div>
+  <div v-if="post">
+    <h1 class="text-h4">{{ post ? post.title : '' }}</h1>
+    <div><v-icon class="mr-1" small>tag</v-icon>{{ categories }}</div>
     <div class="mb-2 d-flex justify-end">
-      <v-icon class="mr-1" small>schedule</v-icon>{{ state.createdAt }}
+      <v-icon class="mr-1" small>schedule</v-icon>{{ createdAt }}
     </div>
-    <nuxt-content :document="state.post" />
+    <nuxt-content :document="post" />
     <client-only>
       <social-share-component
         :url="url"
-        :text="state.post ? state.post.title + ' - 物置小屋' : ''"
+        :text="post ? post.title + ' - 物置小屋' : ''"
       />
     </client-only>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  useContext,
-  useMeta,
-  useStatic,
-} from '@nuxtjs/composition-api'
 // @ts-ignore
-import { Tweet } from 'vue-tweet-embed'
 import { SocialShareComponent } from 'vue-social-share-component'
-import LinkCard from '@/components/molecules/LinkCard/index.vue'
+import Vue from 'vue'
 
 type postT = {
   title: string
@@ -37,37 +30,16 @@ type postT = {
   body: Object
 }
 
-export default defineComponent({
+export default Vue.extend({
   components: {
-    LinkCard,
-    Tweet,
     SocialShareComponent,
   },
-  head: {
-    htmlAttrs: {
-      lang: 'ja',
-    },
-  },
-  setup() {
-    const { $content, route } = useContext()
-    // const { title, meta } = useMeta({
-    //   title: '記事ページ',
-    //   meta: [
-    //     {
-    //       property: 'og:title',
-    //       content: '記事ページ',
-    //       'data-hid': 'og:title',
-    //       type: 'article',
-    //       name: 'og:title',
-    //     },
-    //   ],
-    // })
+  async asyncData({ $content, params }) {
+    const path = params.pathMatch
 
-    let path = route.value.path.slice(1)
-    if (path[path.length - 1] === '/') {
-      path = path.slice(0, -1)
-    }
+    const post = (await $content(path).fetch<postT>()) as postT
 
+    const date = new Date(post.createdAt)
     const yyyymmdd = (y: number, m: number, d: number) => {
       const yyyy = ('000' + y).slice(-4)
       const mm = ('0' + m).slice(-2)
@@ -75,40 +47,50 @@ export default defineComponent({
 
       return `${yyyy}年${mm}月${dd}日`
     }
-    const state = useStatic(
-      async () => {
-        const post = (await $content(path).fetch<postT>()) as postT
-        const date = new Date(post.createdAt)
-        return {
-          post,
-          categories: post.categories.join(', '),
-          createdAt: yyyymmdd(
-            date.getFullYear(),
-            date.getMonth() + 1,
-            date.getDate()
-          ),
-        }
-      },
-      undefined,
-      `post_${path}`
+    const title = post.title
+
+    const categories = post.categories.join(', ')
+    const createdAt = yyyymmdd(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate()
     )
 
-    useMeta({
-      title: state.value?.post.title ?? '',
+    const url = `https://blog.mnao305.com/${path}`
+
+    return {
+      post,
+      categories,
+      createdAt,
+      title,
+      url,
+    }
+  },
+  data() {
+    return {
+      title: '',
+      post: {} as postT,
+      categories: '',
+      createdAt: '',
+      url: '',
+    }
+  },
+  head(): any {
+    return {
+      htmlAttrs: {
+        lang: 'ja',
+      },
+      title: this.title,
       meta: [
         {
           property: 'og:title',
-          content: state.value?.post.title ?? '',
+          content: this.title,
           'data-hid': 'og:title',
           type: 'article',
           name: 'og:title',
         },
       ],
-    })
-
-    const url = `https://blog.mnao305.com/${path}`
-
-    return { state, url }
+    }
   },
 })
 </script>

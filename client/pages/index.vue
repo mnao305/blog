@@ -1,8 +1,8 @@
 <template>
   <div>
-    <ArticleList :page="state.page" :set-article-num="setArticleNum" />
+    <ArticleList :page="page" :set-article-num="setArticleNum" />
     <MoreButton
-      v-if="10 * state.page < state.articleNum"
+      v-if="10 * page < articleNum"
       class="more-button"
       :on-click="incrementPage"
     />
@@ -10,14 +10,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
 import ArticleList from '@/components/organisms/ArticleList/index.vue'
 import MoreButton from '@/components/atoms/MoreButton/index.vue'
+import Vue from 'vue'
 
-export default defineComponent({
+export default Vue.extend({
   components: {
     ArticleList,
     MoreButton,
+  },
+  data() {
+    return {
+      page: 1,
+      articleNum: 0,
+    }
   },
   head() {
     return {
@@ -28,17 +34,13 @@ export default defineComponent({
       },
     }
   },
-  setup() {
-    const state = reactive({ page: 1, articleNum: 0 })
-    const incrementPage = () => {
-      state.page++
-    }
-
-    const setArticleNum = (num: number) => {
-      state.articleNum = num
-    }
-
-    return { state, incrementPage, setArticleNum }
+  methods: {
+    incrementPage() {
+      this.page++
+    },
+    setArticleNum(num: number) {
+      this.articleNum = num
+    },
   },
 })
 </script>
