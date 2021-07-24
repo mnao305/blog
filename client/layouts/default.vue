@@ -3,11 +3,11 @@
     <v-main id="content-wrapper">
       <Header />
       <v-container fluid class="d-flex flex-row">
-        <v-card id="main" class="pa-4">
+        <div id="main" class="pa-4">
           <nuxt />
           <v-divider class="my-4 dots" />
           <BottomContents />
-        </v-card>
+        </div>
       </v-container>
       <Footer />
     </v-main>
