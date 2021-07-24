@@ -5,10 +5,10 @@
   "author": "mnao305",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "generate": "nuxt-ts generate",
-    "start": "nuxt-ts start",
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "commit": "git-cz",
     "mdlint": "markdownlint **/*.md -c .markdownlint.json --ignore node_modules",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@nuxt/content": "1.14.0",
-    "@nuxt/typescript-runtime": "2.1.0",
     "@nuxtjs/composition-api": "0.22.4",
     "@nuxtjs/feed": "2.0.0",
     "@nuxtjs/gtm": "2.4.0",
@@ -62,6 +61,7 @@
     "prettier": "2.3.2",
     "sass-loader": "8.0.2",
     "sharp": "0.28.3",
-    "stylelint": "13.13.1"
+    "stylelint": "13.13.1",
+    "typescript": "^4.3.5"
   }
 }
