@@ -57,7 +57,7 @@
     "lint-staged": "11.2.6",
     "markdownlint-cli": "0.31.0",
     "material-design-icons-iconfont": "5.0.1",
-    "node-sass": "6.0.1",
+    "node-sass": "7.0.0",
     "prettier": "2.5.0",
     "sass-loader": "8.0.2",
     "sharp": "0.29.3",
