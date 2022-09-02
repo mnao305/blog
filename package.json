@@ -55,7 +55,7 @@
     "eslint-plugin-prettier": "3.4.1",
     "husky": "4.3.8",
     "lint-staged": "11.2.6",
-    "markdownlint-cli": "0.31.0",
+    "markdownlint-cli": "0.32.2",
     "material-design-icons-iconfont": "5.0.1",
     "node-sass": "7.0.1",
     "prettier": "2.7.1",
