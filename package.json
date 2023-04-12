@@ -26,14 +26,14 @@
     }
   },
   "dependencies": {
-    "@nuxt/content": "1.14.0",
+    "@nuxt/content": "2.0.0",
     "@nuxtjs/composition-api": "0.22.4",
     "@nuxtjs/feed": "2.0.0",
     "@nuxtjs/gtm": "2.4.0",
     "@nuxtjs/pwa": "3.3.5",
     "jsdom": "17.0.0",
     "nuxt": "2.15.8",
-    "rss-parser": "3.12.0",
+    "rss-parser": "3.13.0",
     "vue-social-share-component": "1.1.4",
     "vue-tweet-embed": "2.4.0"
   },
